@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".about"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="100dp"
+        android:gravity="center_horizontal"
+        android:textAllCaps="true"
+        android:textSize="20sp"
+        android:hint="Rysda Putra Ambariawan"/>
+
+    <TextView
+        android:id="@+id/tvLong"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_horizontal"
+        android:paddingTop="1dp"
+        android:hint="04315108"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/label1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center_horizontal"
+        android:textAllCaps="true"
+        android:textSize="20sp"
+        android:hint="Wahyu Putra Adi Setiawan"/>
+
+
+    <TextView
+        android:id="@+id/tvLong1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_horizontal"
+        android:paddingTop="1dp"
+        android:hint="04315012"
+        android:textSize="20sp" />
+
+</LinearLayout>
