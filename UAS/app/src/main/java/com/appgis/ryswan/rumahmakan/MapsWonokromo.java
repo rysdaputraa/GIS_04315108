@@ -1,5 +1,7 @@
 package com.appgis.ryswan.rumahmakan;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -12,7 +14,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsWonokromo extends FragmentActivity implements OnMapReadyCallback {
 
+    protected Cursor cursor;
     private GoogleMap mMap;
+    DataHelper dbHelper;
+    String no, nama, alamat;
+    double latitude ;
+    double longi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +29,22 @@ public class MapsWonokromo extends FragmentActivity implements OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        dbHelper = new DataHelper(this);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        cursor = db.rawQuery("SELECT * FROM tb_rumahmakan WHERE nama = '" +
+                getIntent().getStringExtra("nama") + "'",null);
+        cursor.moveToFirst();
+        if (cursor.getCount()>0)
+        {
+            cursor.moveToPosition(0);
+            no = (cursor.getString(0).toString());
+            nama =(cursor.getString(1).toString());
+            latitude = (cursor.getDouble(2));
+            longi = (cursor.getDouble(3));
+            alamat = (cursor.getString(4).toString());
+
+        }
     }
 
 
@@ -40,8 +63,8 @@ public class MapsWonokromo extends FragmentActivity implements OnMapReadyCallbac
 
         mMap = googleMap;
         mMap.setMapType(googleMap.MAP_TYPE_NORMAL);
-        LatLng p = new LatLng(-7.2896006, 112.7378395);
-        mMap.addMarker(new MarkerOptions().position(p).title("KFC DARMO"));
+        LatLng p = new LatLng(latitude, longi);
+        mMap.addMarker(new MarkerOptions().position(p).title(nama));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(p, 17f));
     }
 }
